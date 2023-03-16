@@ -26,9 +26,8 @@ function Form({ onClickPost }: IForm) {
   };
 
   return (
-    <div className="flex flex-col gap-3 my-5">
+    <div >
       <input
-        className="py-3 px-5"
         type="text"
         placeholder="Input topic"
         onChange={onChangeTopic}
@@ -36,13 +35,12 @@ function Form({ onClickPost }: IForm) {
         maxLength={50}
       />
       <textarea
-        className="py-3 px-5"
         placeholder="Input content"
         value={content}
         onChange={onChangeContent}
         maxLength={280}
       />
-      <button className="bg-purple-300 py-3 px-5 self-end font-semibold" onClick={onClickSubmit}>
+      <button onClick={onClickSubmit}>
         Send Post
       </button>
     </div>

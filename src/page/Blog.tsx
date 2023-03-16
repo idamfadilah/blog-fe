@@ -82,7 +82,7 @@ function Blog() {
   };
 
   return (
-    <div className="w-8/12 min-h-screen mx-auto break-words py-10 ">
+    <div >
       <WalletMultiButton />
       {error && <Alert onClickAlert={onClickAlert} message={error} />}
       {publicKey && <Form onClickPost={onClickPost} />}
