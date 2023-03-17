@@ -53,7 +53,6 @@ function Blog() {
       },
       signers: [postKey],
     });
-    getAllPosts();
   };
 
   const getAllPosts = async () => {
@@ -74,6 +73,8 @@ function Blog() {
   const onClickPost = (topic: String, content: String) => {
     sendPost(topic, content).catch((err) => {
       setError(err.message);
+    }).then(()=>{
+      getAllPosts()
     });
   };
 
@@ -87,13 +88,14 @@ function Blog() {
       {error && <Alert onClickAlert={onClickAlert} message={error} />}
       {publicKey && <Form onClickPost={onClickPost} />}
       {posts?.map((data) => {
+        const {author, topic, content, timestamp} = data.account
         return (
           <Post
             key={data.publicKey.toBase58()}
-            author={data.account.author}
-            topic={data.account.topic}
-            content={data.account.content}
-            timestamp={data.account.timestamp}
+            author={author}
+            topic={topic}
+            content={content}
+            timestamp={timestamp}
           />
         );
       })}

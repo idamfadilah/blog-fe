@@ -7,16 +7,15 @@ interface IAccount {
   content: String;
 }
 
-function Post(account: IAccount) {
-  const { author, timestamp, topic, content } = account;
+function Post({ author, timestamp, topic, content }: IAccount) {
 
   function timestampToDate(timestamp: BigInt64Array) {
     const msSinceEpoch = Number(timestamp);
     return new Date(msSinceEpoch * 1000);
   }
 
-  const formatRelativeTime = (timestamp: BigInt64Array) => {
-    const datePost = timestampToDate(timestamp);
+  const formatRelativeTime = (date: Date) => {
+    const datePost = date;
     const now = new Date();
     const diff = now.getTime() - datePost.getTime();
     const seconds = Math.floor(diff / 1000);
@@ -36,16 +35,14 @@ function Post(account: IAccount) {
   };
 
   return (
-    <div className="flex flex-col border-t-2 border-neutral-900 py-6 px-12 bg-purple-200/50">
-      <span className="text-xs font-semibold">Author</span>
-      <span className="text-xs mb-5"> {author.toBase58()}</span>
-      <div className="ml-3 border-l-4 border-indigo-500  mb-5 pl-3 py-3 bg-white-300">
-        <h1 className="text-lg font-bold mb-2">{topic}</h1>
-        <p className="">{content}</p>
+    <div>
+      <span>Author</span>
+      <span> {author.toBase58()}</span>
+      <div>
+        <h1>{topic}</h1>
+        <p>{content}</p>
       </div>
-      <span className="text-sm self-end justify-self-end">
-      {formatRelativeTime(timestamp)} 
-      </span>
+      <span>{formatRelativeTime(timestampToDate(timestamp))}</span>
     </div>
   );
 }

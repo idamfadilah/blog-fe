@@ -9,14 +9,11 @@ const Alert = ({ onClickAlert, message }: IAlert) => {
   };
   return (
     <div>
-      <div
-        onClick={onClick}
-        
-      ></div>
-      <div >
+      <div onClick={onClick}></div>
+      <div>
         <h1>E R R O R :</h1>
         {message}
-        </div>
+      </div>
     </div>
   );
 };
